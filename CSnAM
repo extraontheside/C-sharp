@@ -1,0 +1,12 @@
+Classes are the casing of variables and functions. It is important that the name of the class is the same as the file. 
+Classes are an organizational tool called object oriented programming (OOP). The reason for OOP is to split the script 
+into multiple scripts in which are able to take single roles. Classes should be designated to one task. When adding 
+values to classes, add a data type, then a name, and then add a constructor. The constructor is a function than can be 
+used to add values to variables. Constructors can have parameters to set variables. Adding integers help define variables.
+
+Scopes are variables in code that variables can be used in. Variables should be local to the place in code that it can 
+be used. Using braces create code blocks and code blocks defines variable’s scope. There are public and private access 
+modifiers. Access modifiers is a keyword placed before a data type before declaring variables. The purpose of this is to 
+define where the functions and variables can be seen from. If other scripts need to access the variable or function, use 
+public. Having it public makes the variable is shown and editable on the component in the inspector. The default access 
+modifier is private. Private variables can only be editable in the class.
