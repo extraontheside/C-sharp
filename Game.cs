@@ -8,6 +8,14 @@ public class Game {
 
     public void Start (){
         Health.RunPowerUp();
+        /*
+        After prompt the game for a name, we:
+        Enter a cave
+        find Health.
+        Meet a dragon. (need an enemy class)
+
+
+        */
     }
 
     //Game PowerUps
