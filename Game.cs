@@ -13,6 +13,11 @@ public class Game {
         name = Console.ReadLine();
         Console.WriteLine("Your player name is " + name);
         Walk();
+        while(Program.canPlay) {
+            System.Threading.Thread.Sleep(5000);
+            Walk();
+        }
+        Console.WriteLine("You Died.");
     }
 
     private void Walk (){
