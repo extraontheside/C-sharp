@@ -12,12 +12,42 @@ public class Game {
         Console.WriteLine("Please type your name:");
         name = Console.ReadLine();
         Console.WriteLine("Your player name is " + name);
-        Walk();
-        while(Program.canPlay) {
-            System.Threading.Thread.Sleep(5000);
-            Walk();
+        Cave.Enter();
+        while(Game.canPlay) {
+            GameTimer();
+            Play();
         }
         Console.WriteLine("You Died.");
+        Console.WriteLine("Game Over");
+    }
+
+    public string gameState;
+
+
+    private void Play (){        
+        Console.WriteLine("Play commands: play, end, help");
+        gameState = Console.ReadLine();
+        
+        if(gameState == "end") {
+            Console.WriteLine("Game Over");
+            Environment.Exit(0);
+        }
+
+        if(gameState == "help") {
+            Console.WriteLine("What do you need help for? Id you can't play the game, you have issues.");
+        }
+
+        if(gameState != "help" || gameState != "play" || gameState !="end") {
+            Console.WriteLine(gameState + " is not a valid option.");
+            Play();
+        }
+
+        Random randomNum = new Random();
+        Cave.Encounter(randomNum.Next(0, Cave.objects.Length), "walked");
+    }
+
+    public static void GameTimer () {
+        System.Threading.Thread.Sleep(2000);
     }
 
     private void Walk (){

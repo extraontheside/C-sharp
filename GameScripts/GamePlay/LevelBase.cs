@@ -13,14 +13,26 @@ public class LevelBase {
     }
 
     public void Encounter (int i){
-        if(i < objects.Length) {
+        switch (i)
+        {
+            case 0:
+                Console.WriteLine("You've " traveled + " into " + objects[i]);
+            break;
+
+            case 1:
+                Console.WriteLine();
+            default:
+        }
+        
+        
+        /*if(i < objects.Length) {
             Console.WriteLine("You've walked into " + objects[i]);
             if (objects[i] == "Lava"){
                 Program.canPlay = false;
             }
         } else {
             Console.WriteLine("Your path is clear.");
-        }
+        }*/
         
     }
 
