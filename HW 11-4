@@ -1,0 +1,1 @@
+Arrays are a way to collect and store the same type of data together. This is done by having a type of variable, followed by open and closed bracket, name of array, equal, new, type of array, and last number of elements in brackets. Following this is a start function, then the name of the array, then index of element to access in brackets, and last equal that to the value.
