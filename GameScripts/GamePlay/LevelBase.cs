@@ -12,7 +12,7 @@ public class LevelBase {
         Console.WriteLine(StartMessage);
     }
 
-    public void Encounter (int i){
+    public void Encounter (int i, string traveled){
         switch (i)
         {
             case 0:
@@ -33,10 +33,7 @@ public class LevelBase {
             case 3:
             //Danger kills us and ends the Game
                 Console.WriteLine("You've " + traveled + " into " + objects[i]);
-                if(objects[i] == "Shark") {
-                    M16.SemiAutoFire();
-                }
-                Game.canPlay = false;
+                GameStateMachine.currentGameState = GameStateMachine.GameStates.Died;
             break;
 
             default:
@@ -45,20 +42,3 @@ public class LevelBase {
         }
     }
 }
-        
-        /*if(i < objects.Length) {
-            Console.WriteLine("You've walked into " + objects[i]);
-            if (objects[i] == "Lava"){
-                Program.canPlay = false;
-            }
-        } else {
-            Console.WriteLine("Your path is clear.");
-        }*/
-        
-    }
-
-public WeaponBase M16 = new
-
-
-}
-

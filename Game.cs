@@ -1,49 +1,78 @@
 using System;
 public class Game {
 
-    public Game () {
+    
+    
+    public Game () 
+    {
         Health.power = 100;
         Health.message = "You are getting stronger.";
         Ammo.message = "You have more ammo.";
         Cave.StartMessage = "You have entered a cave.";
+        UnderWater.objects = new string[] {"SeaWeed", "Coral", "Fish" , "Shark"};
     }
+    
+    private string gameState = "Start";
+    private GameStateMachine.GameStates toEnum;
 
-    public void Start (){
-        Console.WriteLine("Please type your name:");
-        name = Console.ReadLine();
-        Console.WriteLine("Your player name is " + name);
-        Cave.Enter();
-        while(Game.canPlay) {
-            GameTimer();
+    public void Play ()
+    {        
+        switch (toEnum)
+        {
+            case GameStateMachine.GameStates.Start:
+
+                Console.WriteLine("Please type in your name.");
+                name = Console.ReadLine();
+                Console.WriteLine("Your Player Name is " + name);
+
+                Console.WriteLine("Play commands: Play, End, Help");
+                
+                gameState = Console.ReadLine();
+                
+                if(Enum.TryParse(gameState, out toEnum))
+                    Play();
+
+                break;
+
+            case GameStateMachine.GameStates.Died:
+                Console.WriteLine("You Died.");
+                GameStateMachine.currentGameState = GameStateMachine.GameStates.End;
+                Play();
+                break;
+            
+            case GameStateMachine.GameStates.End:
+                Console.WriteLine("Game Over");
+                Environment.Exit(0);
+                break;
+
+            case GameStateMachine.GameStates.Play:
+                while (Game.canPlay)
+                {
+                Cave.Enter();
+                Random randomNum = new Random();
+                Cave.Encounter(randomNum.Next(0, Cave.objects.Length), "walked");
+                GameTimer();
+                Play();
+                }
+
+                break;
+
+            default:
+                Console.WrtieLine(" is not a valid option.");
+                Play();
+                break;
+        }
+
+        if(gameStates == "help") {
+            Console.WriteLine("What do you need help for? If you can't play the game, you have issues.");
+        }
+
+        if(gameStates != "help" || gameStates != "play" || gameStates !="end") {
+            Console.WriteLine(gameStates + " is not a valid option.");
             Play();
         }
-        Console.WriteLine("You Died.");
-        Console.WriteLine("Game Over");
-    }
 
-    public string gameState;
-
-
-    private void Play (){        
-        Console.WriteLine("Play commands: play, end, help");
-        gameState = Console.ReadLine();
         
-        if(gameState == "end") {
-            Console.WriteLine("Game Over");
-            Environment.Exit(0);
-        }
-
-        if(gameState == "help") {
-            Console.WriteLine("What do you need help for? Id you can't play the game, you have issues.");
-        }
-
-        if(gameState != "help" || gameState != "play" || gameState !="end") {
-            Console.WriteLine(gameState + " is not a valid option.");
-            Play();
-        }
-
-        Random randomNum = new Random();
-        Cave.Encounter(randomNum.Next(0, Cave.objects.Length), "walked");
     }
 
     public static void GameTimer () {
